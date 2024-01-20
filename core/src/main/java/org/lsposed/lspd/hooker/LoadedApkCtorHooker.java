@@ -26,8 +26,8 @@ import android.util.Log;
 
 import org.lsposed.lspd.util.Hookers;
 
-import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.XposedInit;
+import de.robv.android.xp0sed.Xp0sedHelpers;
+import de.robv.android.xp0sed.Xp0sedInit;
 import io.github.libxposed.api.XposedInterface;
 import io.github.libxposed.api.annotations.AfterInvocation;
 import io.github.libxposed.api.annotations.XposedHooker;
@@ -44,15 +44,15 @@ public class LoadedApkCtorHooker implements XposedInterface.Hooker {
             LoadedApk loadedApk = (LoadedApk) callback.getThisObject();
             assert loadedApk != null;
             String packageName = loadedApk.getPackageName();
-            Object mAppDir = XposedHelpers.getObjectField(loadedApk, "mAppDir");
+            Object mAppDir = Xp0sedHelpers.getObjectField(loadedApk, "mAppDir");
             Hookers.logD("LoadedApk#<init> ends: " + mAppDir);
 
-            if (!XposedInit.disableResources) {
+            if (!Xp0sedInit.disableResources) {
                 XResources.setPackageNameForResDir(packageName, loadedApk.getResDir());
             }
 
             if (packageName.equals("android")) {
-                if (XposedInit.startsSystemServer) {
+                if (Xp0sedInit.startsSystemServer) {
                     Hookers.logD("LoadedApk#<init> is android, skip: " + mAppDir);
                     return;
                 } else {
@@ -60,7 +60,7 @@ public class LoadedApkCtorHooker implements XposedInterface.Hooker {
                 }
             }
 
-            if (!XposedInit.loadedPackagesInProcess.add(packageName)) {
+            if (!Xp0sedInit.loadedPackagesInProcess.add(packageName)) {
                 Hookers.logD("LoadedApk#<init> has been loaded before, skip: " + mAppDir);
                 return;
             }

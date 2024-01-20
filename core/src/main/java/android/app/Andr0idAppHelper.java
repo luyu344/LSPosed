@@ -20,12 +20,12 @@
 
 package android.app;
 
-import static de.robv.android.xposed.XposedHelpers.findClass;
-import static de.robv.android.xposed.XposedHelpers.findFieldIfExists;
-import static de.robv.android.xposed.XposedHelpers.findMethodExactIfExists;
-import static de.robv.android.xposed.XposedHelpers.getObjectField;
-import static de.robv.android.xposed.XposedHelpers.newInstance;
-import static de.robv.android.xposed.XposedHelpers.setFloatField;
+import static de.robv.android.xp0sed.Xp0sedHelpers.findClass;
+import static de.robv.android.xp0sed.Xp0sedHelpers.findFieldIfExists;
+import static de.robv.android.xp0sed.Xp0sedHelpers.findMethodExactIfExists;
+import static de.robv.android.xp0sed.Xp0sedHelpers.getObjectField;
+import static de.robv.android.xp0sed.Xp0sedHelpers.newInstance;
+import static de.robv.android.xp0sed.Xp0sedHelpers.setFloatField;
 
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
@@ -37,8 +37,8 @@ import android.view.Display;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
-import de.robv.android.xposed.XSharedPreferences;
-import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xp0sed.XSharedPreferences;
+import de.robv.android.xp0sed.Xp0sedBridge;
 
 /**
  * Contains various methods for information about the current app.
@@ -46,8 +46,8 @@ import de.robv.android.xposed.XposedBridge;
  * <p>For historical reasons, this class is in the {@code android.app} package. It can't be moved
  * without breaking compatibility with existing modules.
  */
-public final class AndroidAppHelper {
-	private AndroidAppHelper() {}
+public final class Andr0idAppHelper {
+	private Andr0idAppHelper() {}
 
 	private static final Class<?> CLASS_RESOURCES_KEY;
 	private static final boolean HAS_IS_THEMEABLE;
@@ -71,7 +71,7 @@ public final class AndroidAppHelper {
 		try {
 			return newInstance(CLASS_RESOURCES_KEY, resDir, splitResDirs, overlayDirs, libDirs, displayId, overrideConfiguration, compatInfo);
 		} catch (Throwable t) {
-			XposedBridge.log(t);
+			Xp0sedBridge.log(t);
 			return null;
 		}
 	}
