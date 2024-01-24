@@ -168,9 +168,9 @@ public final class XSharedPreferences implements SharedPreferences {
             boolean xposedsharedprefs = false;
             try {
                 Map<String, Object> metaData = MetaDataReader.getMetaData(new File(m.get()));
-                isModule = metaData.containsKey("xposedminversion");
+                isModule = metaData.containsKey("xp0sedminversion");
                 if (isModule) {
-                    Object minVersionRaw = metaData.get("xposedminversion");
+                    Object minVersionRaw = metaData.get("xp0sedminversion");
                     if (minVersionRaw instanceof Integer) {
                         xposedminversion = (Integer) minVersionRaw;
                     } else if (minVersionRaw instanceof String) {
